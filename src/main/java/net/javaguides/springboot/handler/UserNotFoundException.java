@@ -1,4 +1,4 @@
-package net.javaguides.springboot.controller;
+package net.javaguides.springboot.handler;
 
 public class UserNotFoundException extends RuntimeException {
     UserNotFoundException(Long id) {

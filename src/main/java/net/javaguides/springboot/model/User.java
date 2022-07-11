@@ -1,24 +1,26 @@
 package net.javaguides.springboot.model;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
 
-@Table(name = "users")
-@Entity
+@Table
+@Entity(name = "effyis")
 
-@XmlRootElement
 public class User {
 	
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@SequenceGenerator(
+			name = "user_sequence",
+			sequenceName = "user_sequence",
+			allocationSize = 1
+	)
+	@GeneratedValue(
+			strategy = GenerationType.IDENTITY,
+			generator = "user_sequence"
+	)
 	private long id;
 	
 	@Column(name = "name", nullable = false)

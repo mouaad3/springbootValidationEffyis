@@ -21,8 +21,8 @@ public class UserController {
 	private UserRepository userRepository;
 
 	@GetMapping(path="/", produces = { "application/xml", "text/xml" })
-	List<User> all() {
-		return userRepository.findAll();
+	User all() {
+		return userRepository.findAll().get(0);
 	}
 
 	@PostMapping(path="/" , consumes = MediaType.APPLICATION_JSON_VALUE)

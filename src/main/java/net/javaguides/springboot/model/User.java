@@ -1,46 +1,26 @@
 package net.javaguides.springboot.model;
 
+import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlProperty;
+
 import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
+import java.io.Serializable;
 
-@Table
-@Entity(name = "effyis")
-
-public class User {
+//@Table
+@Entity
+@Table(name = "userInfo")
+public class User implements Serializable {
 	
 	@Id
-	@SequenceGenerator(
-			name = "user_sequence",
-			sequenceName = "user_sequence",
-			allocationSize = 1
-	)
 	@GeneratedValue(
-			strategy = GenerationType.IDENTITY,
-			generator = "user_sequence"
+			strategy = GenerationType.IDENTITY
 	)
 	private long id;
-	
-	@Column(name = "name", nullable = false)
-	
-	// user name should not be null or empty
-	// user name should have at least 2 characters
-	@NotEmpty
-	@Size(min = 2, message = "user name should have at least 2 characters")
 	private String name;
-	
-	// email should be a valid email format
-	// email should not be null or empty
-	@NotEmpty
-	@Email
 	private String email;
-	
-	// password should not be null or empty
-	// password should have at least 8 characters
-	@NotEmpty
-	@Size(min = 8, message = "password should have at least 8 characters")
 	private String password;
 	
 	public User() {

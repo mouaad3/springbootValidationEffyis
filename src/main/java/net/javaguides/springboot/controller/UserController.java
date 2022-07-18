@@ -1,7 +1,10 @@
 package net.javaguides.springboot.controller;
 
 
+import com.fasterxml.jackson.annotation.JsonView;
+import net.javaguides.springboot.model.CollectionWrapper;
 import net.javaguides.springboot.model.User;
+import net.javaguides.springboot.model.UserView;
 import net.javaguides.springboot.repository.UserRepository;
 import net.javaguides.springboot.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,8 +24,9 @@ public class UserController {
 	private UserRepository userRepository;
 
 	@GetMapping(path="/", produces = { "application/xml", "text/xml" })
-	User all() {
-		return userRepository.findAll().get(0);
+	@JsonView(UserView.Summary.class)
+	public CollectionWrapper all() {
+		return new CollectionWrapper(userRepository.findAll());
 	}
 
 	@PostMapping(path="/" , consumes = MediaType.APPLICATION_JSON_VALUE)

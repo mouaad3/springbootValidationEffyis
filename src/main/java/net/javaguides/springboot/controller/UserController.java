@@ -24,7 +24,6 @@ public class UserController {
 	private UserRepository userRepository;
 
 	@GetMapping(path="/", produces = { "application/xml", "text/xml" })
-	@JsonView(UserView.Summary.class)
 	public CollectionWrapper all() {
 		return new CollectionWrapper(userRepository.findAll());
 	}

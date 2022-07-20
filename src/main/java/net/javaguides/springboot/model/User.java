@@ -18,6 +18,7 @@ public class User implements Serializable {
 	@GeneratedValue(
 			strategy = GenerationType.IDENTITY
 	)
+	@JacksonXmlProperty(isAttribute = true)
 	private long id;
 	private String name;
 	private String email;

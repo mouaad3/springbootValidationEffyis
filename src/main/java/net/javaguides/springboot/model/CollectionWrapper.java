@@ -10,13 +10,15 @@ import java.util.List;
 
 @JacksonXmlRootElement(localName = "Users")
 public class CollectionWrapper {
+
     @JacksonXmlElementWrapper(useWrapping = false)
     @JacksonXmlProperty(localName = "User")
     @JsonView(UserView.Summary.class)
-    private List<User> users;
-
+    private final List<User> users;
 
     public CollectionWrapper(List<User> users) {
         this.users = users;
+
     }
+
 }
